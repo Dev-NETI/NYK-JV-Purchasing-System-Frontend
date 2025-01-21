@@ -1,9 +1,9 @@
 "use client";
 
 import { useAuth } from "@/hooks/auth";
-import Navigation from "@/app/(app)/Navigation";
 import Loading from "@/app/(app)/Loading";
 import { useEffect } from "react";
+import Template from "./Template";
 
 const AppLayout = ({ children, header }) => {
   const { user, checkVerified } = useAuth({
@@ -20,9 +20,9 @@ const AppLayout = ({ children, header }) => {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <Navigation user={user} />
-
-      <main>{children}</main>
+      <main>
+        <Template children={children} />
+      </main>
     </div>
   );
 };

@@ -1,7 +1,11 @@
-import { Inter } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
+import Script from "next/script";
 
-const inter = Inter({ subsets: ["latin"] });
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+});
 
 export const metadata = {
   title: "Create Next App",
@@ -11,7 +15,72 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link
+          rel="shortcut icon"
+          type="image/x-icon"
+          href="/assets/images/favicon.png"
+        />
+        <link
+          rel="stylesheet"
+          href="/assets/vendor/chartist/css/chartist.min.css"
+        />
+        <link
+          href="/assets/vendor/bootstrap-select/css/bootstrap-select.min.css"
+          rel="stylesheet"
+        />
+        <link
+          href="/assets/vendor/owl-carousel/owl.carousel.css"
+          rel="stylesheet"
+        />
+        <link href="/assets/css/style.css" rel="stylesheet" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+
+      <body className={poppins.className}>
+        <div id="preloader" className="z-50">
+          <div className="sk-three-bounce">
+            <div className="sk-child sk-bounce1"></div>
+            <div className="sk-child sk-bounce2"></div>
+            <div className="sk-child sk-bounce3"></div>
+          </div>
+        </div>
+
+        {children}
+
+        <Script
+          src="/assets/vendor/global/global.min.js"
+          strategy="beforeInteractive"
+        ></Script>
+        <Script
+          src="/assets/vendor/bootstrap-select/js/bootstrap-select.min.js"
+          strategy="beforeInteractive"
+        ></Script>
+        <Script
+          src="/assets/vendor/chart-js/chart.bundle.min.js"
+          strategy="afterInteractive"
+        ></Script>
+        <Script
+          src="/assets/vendor/owl-carousel/owl.carousel.js"
+          strategy="afterInteractive"
+        ></Script>
+        <Script
+          src="/assets/vendor/peity/jquery.peity.min.js"
+          strategy="afterInteractive"
+        ></Script>
+        <Script
+          src="/assets/js/custom.min.js"
+          strategy="afterInteractive"
+        ></Script>
+        <Script
+          src="/assets/js/deznav-init.js"
+          strategy="afterInteractive"
+        ></Script>
+      </body>
     </html>
   );
 }

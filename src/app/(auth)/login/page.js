@@ -1,39 +1,26 @@
 "use client";
 
+import { useAuth } from "@/hooks/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { useAuth } from "@/hooks/auth";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import AuthSessionStatus from "@/app/(auth)/AuthSessionStatus";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import axios from "@/lib/axios";
 
-const FormSchema = z.object({
-  email: z.string().email({
-    message: "Invalid email format.",
-  }),
-  password: z
-    .string()
-    .min(8, { message: "Password must be at least 8 characters." }),
-});
-
-const Login = () => {
+function page() {
   const router = useRouter();
   const { login } = useAuth({
     middleware: "guest",
     redirectIfAuthenticated: "/login-otp",
+  });
+
+  const FormSchema = z.object({
+    email: z.string().email({
+      message: "Invalid email format.",
+    }),
+    password: z
+      .string()
+      .min(8, { message: "Password must be at least 8 characters." }),
   });
 
   const [errors, setErrors] = useState([]);
@@ -63,107 +50,108 @@ const Login = () => {
       setErrors,
       setStatus,
     });
-
-    // await axios.post("/login-otp", data);
-  };
-
-  const googleLogin = async () => {
-    try {
-      router.replace("http://localhost:8000/auth/redirect");
-    } catch (error) {
-      console.error("Error logging in:", error);
-    }
   };
 
   return (
-    <>
-      <AuthSessionStatus className="mb-4" status={status} />
-      <div className="flex min-h-full flex-1 flex-col justify-center items-center px-6 py-12 lg:px-8">
-        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <img
-            className="mx-auto h-10 w-auto"
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-            alt="Your Company"
-          />
-          <h2 className="mt-10 mb-5 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            Sign in to your account
-          </h2>
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-md-6">
+            <div className="authincation-content">
+              <div className="row no-gutters">
+                <div className="col-xl-12">
+                  <div className="auth-form">
+                    <div className="text-center mb-3">
+                      <a href="index.html">
+                        {/* <img src="images/logo-full.png" alt="" /> */}
+                      </a>
+                    </div>
+                    <h2 className="text-center mb-4 font-bold">
+                      Sign in your account
+                    </h2>
+                    <form onSubmit={form.handleSubmit(submitForm)}>
+                      <div className="form-group">
+                        <label className="mb-1 form-label"> Email</label>
+                        <input
+                          type="email"
+                          className="form-control"
+                          placeholder="Email address"
+                          {...form.register("email")}
+                        />
+                        {form.formState.errors.email && (
+                          <p className="text-red-500 text-sm mt-1">
+                            {form.formState.errors.email.message}
+                          </p>
+                        )}
+                      </div>
+                      <div className="form-group mb-4">
+                        <label className="mb-1 form-label">Password</label>
+                        <div className="position-relative">
+                          <input
+                            type="password"
+                            id="dz-password"
+                            className="form-control"
+                            placeholder="Password"
+                            {...form.register("password")}
+                          />
+                          <span className="show-pass eye position-absolute end-0 py-2translate-middle-y pe-3">
+                            <i className="fa fa-eye-slash"></i>
+                            <i className="fa fa-eye"></i>
+                          </span>
+                        </div>
+                        {form.formState.errors.password && (
+                          <p className="text-red-500 text-sm mt-1">
+                            {form.formState.errors.password.message}
+                          </p>
+                        )}
+                      </div>
+                      <div className="form-row d-flex justify-content-between mt-4 mb-2">
+                        <div className="form-group">
+                          <div className="form-check custom-checkbox ms-1">
+                            <input
+                              type="checkbox"
+                              className="form-check-input"
+                              id="basic_checkbox_1"
+                            />
+                            <label
+                              className="form-check-label"
+                              htmlFor="basic_checkbox_1"
+                            >
+                              Remember Password
+                            </label>
+                          </div>
+                        </div>
+                        <div className="form-group">
+                          <a href="page-forgot-password.html">
+                            Forgot Password?
+                          </a>
+                        </div>
+                      </div>
+                      <div className="text-center">
+                        <button
+                          type="submit"
+                          className="btn btn-primary light btn-block"
+                        >
+                          Sign Me In
+                        </button>
+                      </div>
+                    </form>
+                    <div className="new-account mt-3">
+                      <p>
+                        Don't have an account?{" "}
+                        <a className="text-primary" href="./page-register.html">
+                          Sign up
+                        </a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <button
-          onClick={googleLogin}
-          type="button"
-          className="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 me-2 mb-2"
-        >
-          <svg
-            className="w-4 h-4 me-2"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            viewBox="0 0 18 19"
-          >
-            <path d="M8.842 18.083a8.8 8.8 0 0 1-8.65-8.948 8.841 8.841 0 0 1 8.8-8.652h.153a8.464 8.464 0 0 1 5.7 2.257l-2.193 2.038A5.27 5.27 0 0 0 9.09 3.4a5.882 5.882 0 0 0-.2 11.76h.124a5.091 5.091 0 0 0 5.248-4.057L14.3 11H9V8h8.34c.066.543.095 1.09.088 1.636-.086 5.053-3.463 8.449-8.4 8.449l-.186-.002Z" />
-          </svg>
-          Sign in with Google
-        </button>
-        <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(submitForm)}
-            className="grid w-full max-w-sm items-center gap-1.5"
-          >
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="email"
-                      placeholder="Email address"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Password</FormLabel>
-                  <FormControl>
-                    <Input type="password" placeholder="Password" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <a
-              href="forgot-password"
-              className="text-sm text-indigo-600 text-right"
-            >
-              Forget password
-            </a>
-
-            <Button className="mt-1" type="submit">
-              Login
-            </Button>
-          </form>
-        </Form>
-        <p className="mt-10 text-center text-sm text-gray-500">
-          Not register?{" "}
-          <a
-            href="register"
-            className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
-          >
-            Click here to register
-          </a>
-        </p>
       </div>
-    </>
+    </div>
   );
-};
-
-export default Login;
+}
+export default page;

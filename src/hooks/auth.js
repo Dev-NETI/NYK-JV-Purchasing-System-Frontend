@@ -163,23 +163,9 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
     window.location.pathname = "/login";
   };
 
-  const [verified, setVerified] = useState(false);
-
-  const verifiedOtpSuccess = () => {
-    // Cookies.set("isVerified", "true", { secure: true, sameSite: "strict" });
-    // if (verified === true) {
-    //   router.push("/dashboard");
-    // } else {
-    console.log(verified);
-    router.push("/login-otp"); // Add a leading slash to the route path
-    //   console.log("Not verified");
-    // }
-  };
-
   const checkVerified = async () => {
     await axios.get("/checking-status-otp").then((response) => {
       if (response.data.status === true) {
-        router.push("/dashboard");
         console.log("Verified");
       } else {
         router.push("/login-otp");

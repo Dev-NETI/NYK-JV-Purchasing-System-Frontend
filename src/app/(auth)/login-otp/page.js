@@ -96,66 +96,103 @@ function LoginOtp() {
 
   return (
     <>
-      <div className="flex min-h-full flex-1 flex-col justify-center items-center px-6 py-12 lg:px-8">
-        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <img
-            className="mx-auto h-10 w-auto"
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-            alt="Your Company"
-          />
-          <h2 className="mt-10 mb-5 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            Authentication
-          </h2>
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-md-6">
+              <div className="authincation-content">
+                <div className="row no-gutters">
+                  <div className="col-xl-12">
+                    <div className="auth-form">
+                      <h2 className="text-center mb-4 font-bold">
+                        Authentication
+                      </h2>
+                      <Form {...form}>
+                        <form
+                          onSubmit={form.handleSubmit(onSubmit)}
+                          className="space-y-6"
+                        >
+                          <FormField
+                            control={form.control}
+                            name="pin"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>One-Time Password</FormLabel>
+                                <FormControl>
+                                  <div className="flex justify-center">
+                                    <InputOTP maxLength={6} {...field}>
+                                      <InputOTPGroup className="gap-1">
+                                        <InputOTPSlot
+                                          className="rounded-md border w-10 h-10 text-center text-lg"
+                                          type="number"
+                                          index={0}
+                                        />
+                                        <InputOTPSlot
+                                          className="rounded-md border w-10 h-10 text-center text-lg"
+                                          type="number"
+                                          index={1}
+                                        />
+                                      </InputOTPGroup>
+                                      <InputOTPSeparator className="mx-2" />
+                                      <InputOTPGroup className="gap-1">
+                                        <InputOTPSlot
+                                          className="rounded-md border w-10 h-10 text-center text-lg"
+                                          type="number"
+                                          index={2}
+                                        />
+                                        <InputOTPSlot
+                                          className="rounded-md border w-10 h-10 text-center text-lg"
+                                          type="number"
+                                          index={3}
+                                        />
+                                      </InputOTPGroup>
+                                      <InputOTPSeparator className="mx-2" />
+                                      <InputOTPGroup className="gap-1">
+                                        <InputOTPSlot
+                                          className="rounded-md border w-10 h-10 text-center text-lg"
+                                          type="number"
+                                          index={4}
+                                        />
+                                        <InputOTPSlot
+                                          className="rounded-md border w-10 h-10 text-center text-lg"
+                                          type="number"
+                                          index={5}
+                                        />
+                                      </InputOTPGroup>
+                                    </InputOTP>
+                                  </div>
+                                </FormControl>
+                                <FormDescription>
+                                  Please enter the one-time password sent to
+                                  your phone.
+                                </FormDescription>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+
+                          <Button className="w-full" type="submit">
+                            Submit
+                          </Button>
+                        </form>
+                      </Form>
+
+                      <p className="mt-10 text-center text-sm text-gray-500">
+                        Logout an Account?{" "}
+                        <button
+                          onClick={logout}
+                          className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
+                        >
+                          Click here
+                        </button>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            <FormField
-              control={form.control}
-              name="pin"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>One-Time Password</FormLabel>
-                  <FormControl className="flex">
-                    <InputOTP maxLength={6} {...field}>
-                      <InputOTPGroup className="flex mx-auto">
-                        <InputOTPSlot type="number" index={0} />
-                        <InputOTPSlot type="number" index={1} />
-                      </InputOTPGroup>
-                      <InputOTPSeparator />
-                      <InputOTPGroup>
-                        <InputOTPSlot type="number" index={2} />
-                        <InputOTPSlot type="number" index={3} />
-                      </InputOTPGroup>
-                      <InputOTPSeparator />
-                      <InputOTPGroup>
-                        <InputOTPSlot type="number" index={4} />
-                        <InputOTPSlot type="number" index={5} />
-                      </InputOTPGroup>
-                    </InputOTP>
-                  </FormControl>
-                  <FormDescription>
-                    Please enter the one-time password sent to your phone.
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <Button className="w-full" type="submit">
-              Submit
-            </Button>
-          </form>
-        </Form>
-
-        <p className="mt-10 text-center text-sm text-gray-500">
-          Logout an Account?{" "}
-          <button
-            onClick={logout}
-            className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
-          >
-            Click here
-          </button>
-        </p>
       </div>
     </>
   );
