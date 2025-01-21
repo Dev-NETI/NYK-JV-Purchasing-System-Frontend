@@ -2,6 +2,7 @@
 
 import { useAuth } from "@/hooks/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -61,10 +62,14 @@ function page() {
               <div className="row no-gutters">
                 <div className="col-xl-12">
                   <div className="auth-form">
-                    <div className="text-center mb-3">
-                      <a href="index.html">
-                        {/* <img src="images/logo-full.png" alt="" /> */}
-                      </a>
+                    <div className="flex justify-center items-center mb-3">
+                      <Image
+                        src="/assets/PMSLOGO.png"
+                        alt="logo"
+                        width={200}
+                        height={200}
+                        priority
+                      />
                     </div>
                     <h2 className="text-center mb-4 font-bold">
                       Sign in your account

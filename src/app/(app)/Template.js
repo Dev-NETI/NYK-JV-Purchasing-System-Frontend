@@ -54,6 +54,7 @@ const Template = ({ children, header }) => {
             alt="logo"
             width={500}
             height={500}
+            priority
           />
           <Image
             className="logo-compact"
@@ -61,6 +62,7 @@ const Template = ({ children, header }) => {
             alt="logo"
             width={500}
             height={500}
+            priority
           />
           <Image
             className="brand-title"
@@ -68,6 +70,7 @@ const Template = ({ children, header }) => {
             alt="logo"
             width={500}
             height={500}
+            priority
           />
         </a>
 
@@ -200,6 +203,7 @@ const Template = ({ children, header }) => {
                       width={20}
                       height={20}
                       alt="profile"
+                      priority
                     />
                     <div className="header-info">
                       <span className="text-black">
@@ -254,19 +258,19 @@ const Template = ({ children, header }) => {
                 </li>
               </ul>
             </li>
-            <li className={isPathActive("/user-management") ? "mm-active" : ""}>
+            <li className={isPathActive("/user-list") ? "mm-active" : ""}>
               <a
                 className="has-arrow ai-icon"
-                onClick={() => toggleSubmenu("/user-management")}
+                onClick={() => toggleSubmenu("/user-list")}
                 style={{ cursor: "pointer" }}
               >
                 <i className="flaticon-381-networking"></i>
                 <span className="nav-text">User Management</span>
               </a>
               <ul
-                aria-expanded={isMenuExpanded("/user-management")}
+                aria-expanded={isMenuExpanded("/user-list")}
                 className={`mm-collapse ${
-                  isMenuExpanded("/user-management") ? "mm-show" : ""
+                  isMenuExpanded("/user-list") ? "mm-show" : ""
                 }`}
               >
                 <li>

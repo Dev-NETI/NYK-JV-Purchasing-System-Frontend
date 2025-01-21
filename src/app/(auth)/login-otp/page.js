@@ -26,6 +26,7 @@ import { toast } from "@/components/ui/use-toast";
 import { Button } from "@/components/ui/button";
 import axios from "@/lib/axios";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const FormSchema = z.object({
   pin: z.string().min(6, {
@@ -104,6 +105,15 @@ function LoginOtp() {
                 <div className="row no-gutters">
                   <div className="col-xl-12">
                     <div className="auth-form">
+                      <div className="flex justify-center items-center mb-3">
+                        <Image
+                          src="/assets/PMSLOGO.png"
+                          alt="logo"
+                          width={200}
+                          height={200}
+                          priority
+                        />
+                      </div>
                       <h2 className="text-center mb-4 font-bold">
                         Authentication
                       </h2>
