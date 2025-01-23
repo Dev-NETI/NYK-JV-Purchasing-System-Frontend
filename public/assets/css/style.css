@@ -13676,11 +13676,11 @@ svg.pulse-svg .third-circle {
   width: 100%;
 }
 
-@media only screen and (max-width: 1199px) {
+/* @media only screen and (max-width: 1199px) {
   [data-header-position=fixed] .content-body {
     padding-top: 5rem;
   }
-}
+} */
 
 [data-header-position=fixed] .deznav {
   margin-top: 0;

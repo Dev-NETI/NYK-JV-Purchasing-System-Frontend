@@ -1,7 +1,7 @@
 "use client";
 
 import { getUserList } from "@/services/UserServices";
-import { Input } from "postcss";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 function UserList() {
@@ -116,6 +116,11 @@ function UserList() {
                 </div>
                 <div className="col-sm-3 mt-2 mt-sm-0">
                   <button className="btn btn-primary">Search</button>
+                </div>
+                <div className="col-sm-3 mt-2 mt-sm-0 d-flex justify-content-end">
+                  <Link href="/user-add" className="btn btn-primary">
+                    Add User
+                  </Link>
                 </div>
               </div>
             </form>

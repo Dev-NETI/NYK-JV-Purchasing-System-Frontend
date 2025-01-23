@@ -258,7 +258,13 @@ const Template = ({ children, header }) => {
                 </li>
               </ul>
             </li>
-            <li className={isPathActive("/user-list") ? "mm-active" : ""}>
+            <li
+              className={
+                isPathActive("/user-list") || isPathActive("/user-add")
+                  ? "mm-active"
+                  : ""
+              }
+            >
               <a
                 className="has-arrow ai-icon"
                 onClick={() => toggleSubmenu("/user-list")}
@@ -270,7 +276,9 @@ const Template = ({ children, header }) => {
               <ul
                 aria-expanded={isMenuExpanded("/user-list")}
                 className={`mm-collapse ${
-                  isMenuExpanded("/user-list") ? "mm-show" : ""
+                  isMenuExpanded("/user-list") || isMenuExpanded("/user-add")
+                    ? "mm-show"
+                    : ""
                 }`}
               >
                 <li>
@@ -279,6 +287,14 @@ const Template = ({ children, header }) => {
                     className={pathname === "/user-list" ? "mm-active" : ""}
                   >
                     User List
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/user-add"
+                    className={pathname === "/user-add" ? "mm-active" : ""}
+                  >
+                    Add User
                   </Link>
                 </li>
               </ul>
