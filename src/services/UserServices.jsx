@@ -13,10 +13,10 @@ const getUserList = async (pagination, searchParams) => {
 };
 
 //STORE
-const storeUser = async () => {
-  const { data } = await axios.post(`/api/user-management`);
+const storeUser = async (data) => {
+  const response = await axios.post(`/api/user-management`, data);
 
-  return data;
+  return response;
 };
 
 //UPDATE

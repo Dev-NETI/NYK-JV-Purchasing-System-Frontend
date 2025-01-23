@@ -4,6 +4,7 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/hooks/auth";
 import Image from "next/image";
+import { Toaster } from "react-hot-toast";
 
 const Template = ({ children, header }) => {
   const { logout } = useAuth();
@@ -46,6 +47,28 @@ const Template = ({ children, header }) => {
 
   return (
     <div className={`main-wrapper ${isMenuOpen ? "menu-toggle" : ""}`}>
+      <div>
+        <Toaster
+          position="bottom-right"
+          toastOptions={{
+            duration: 4000,
+            style: {
+              background: "#333",
+              color: "#fff",
+            },
+            success: {
+              style: {
+                background: "green",
+              },
+            },
+            error: {
+              style: {
+                background: "red",
+              },
+            },
+          }}
+        />
+      </div>
       <div className="nav-header ">
         <a href="/dashboard" className="brand-logo" aria-label="Gymove">
           <Image

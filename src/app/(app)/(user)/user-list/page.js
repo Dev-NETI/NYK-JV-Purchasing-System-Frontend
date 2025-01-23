@@ -151,15 +151,15 @@ function UserList() {
                     <td>NETI</td>
                     <td>
                       <div className="d-flex">
-                        <a
-                          href="#"
+                        <Link
+                          href={`/user-edit/${user.id}`}
                           className="btn btn-primary shadow btn-md me-1"
                         >
                           <i className="fa fa-pencil"></i>
-                        </a>
-                        <a href="#" className="btn btn-danger shadow btn-md">
+                        </Link>
+                        <button className="btn btn-danger shadow btn-md">
                           <i className="fa fa-trash"></i>
-                        </a>
+                        </button>
                       </div>
                     </td>
                   </tr>
